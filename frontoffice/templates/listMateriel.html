@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   {% load static %}
+    {% include 'authentification/header/head.html' %}
+</head>
+<body>
+<center>
+<h3> --- List Des Matériel : --- </h3>
+   <ul class="alert alert-success">
+    {% block content %}
+
+   <table>
+       <thead class="alert-dark">
+       <th>num Serie</th>
+       <th>date Achat</th>
+       <th>garantie</th>
+       <th>lieu Achat</th>
+       <th>prix Achat</th>
+       <th>marque</th>
+       <th>lieu Affectation</th>
+       <th>Actions</th>
+       </thead>
+       <tbody>
+       {% for m in mate %}
+       <tr>
+           <td>{{  m.numSerie }}</td>
+           <td>{{  m.dateAchat }}</td>
+           <td>{{  m.garantie }}</td>
+           <td>{{  m.lieuAchat }}</td>
+           <td>{{  m.prixAchat }}</td>
+           <td>{{  m.marque }}</td>
+           <td>{{  m.lieuAffectation }}</td>
+           <td>
+               <a href="{% url 'updateMateriel' m.id %}" class="btn btn-success">Update</a>
+           <a href="{% url 'deleteMateriel' m.id %}" class="btn btn-warning" >Delete</a>
+           </td>
+       </tr>
+       {% endfor %}
+       </tbody>
+   </table>
+
+
+
+</ul>
+        </center>
+         <a href="{% url 'addMateriel' %}" class="btn btn-primary">Ajouter</a>
+</body>
+</html>
+{% endblock %}
